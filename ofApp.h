@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "component.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -23,14 +24,13 @@ class ofApp : public ofBaseApp{
 
 	  //変数
 	  ofVec2f movePos;
+	  // ofVec2f circlePos;
+	  ofVec2f diffPos;
 	  ofColor circleCol;
-	  float radius,radiusDflt,colR,colG,colB;
+	  float radiusDflt,colR,colG,colB;
 	  bool mouseMvd,mouseDrg,mouseHit;
 	  string mouseMvdString;
 
-	  static const int NUM = 5;
-	  ofVec2f circlePos[NUM];
-	  ofVec2f diffPos[NUM];
-    float length_x[NUM];
-    float length_y[NUM];
+	  //クラス
+	  component newComponent; // クラスcomponentをインスタンス化(実体化)
 };
