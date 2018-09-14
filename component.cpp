@@ -38,7 +38,7 @@ void component::update(){
 
   //サイズ
   if(mouseDrg && !mouseMvd) {
-    if (radius <= 30 ){
+    if (radius <= radiusDflt*2 ){
       radius += radiusExp;
     }
   }else {
@@ -50,14 +50,21 @@ void component::update(){
 
 void component::draw(){
   ofSetHexColor(hexCol);
-  ofDrawCircle(circlePos.x, circlePos.y, radius*2);
+  ofDrawRectangle(circlePos.x,circlePos.y, radius*2, radius*2);
+  // ofDrawCircle(circlePos.x, circlePos.y, radius*2);
 }
 
 void component::mouseMoved(int x, int y ){
   mouseMvd = true;
   mouseDrg = false;
-
   movePos = ofVec2f(x, y);
+
+    diffPos = circlePos - movePos;
+    float length_x = diffPos.x;
+    float length_y = diffPos.y;
+    if (-radiusDflt < length_x && length_x < radiusDflt && -radiusDflt < length_y && length_y < radiusDflt ){
+      mouseMvd = false;
+    }
 }
 
 void component::mouseDragged(int x, int y, int button){
@@ -73,7 +80,7 @@ void component::mousePressed(int x, int y, int button){
     diffPos = circlePos - movePos;
     float length_x = diffPos.x;
     float length_y = diffPos.y;
-    if (-40 < length_x && length_x < 40 && -40 < length_y && length_y < 40 ){
+    if (-radiusDflt < length_x && length_x < radiusDflt && -radiusDflt < length_y && length_y < radiusDflt ){
       mouseDrg = true;
     }
 }

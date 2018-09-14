@@ -5,9 +5,10 @@ void ofApp::setup(){
     ofSetFrameRate(60);
     ofBackground(0);
     ofSetCircleResolution(64);
+    ofSetRectMode(OF_RECTMODE_CENTER); //矩形の中心が原点
 
     newComponent.circlePos = ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2);
-    newComponent.radiusDflt = 20;
+    newComponent.radiusDflt = 25;
     newComponent.setup();
 
 
