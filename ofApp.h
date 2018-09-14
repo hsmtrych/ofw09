@@ -22,13 +22,15 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
 	  //変数
-	  ofVec2f movePos,circlePos,diffPos;
+	  ofVec2f movePos;
 	  ofColor circleCol;
-	  float radius,radiusDflt,colR,colG,colB,boundingMaxX,boundingMinX,boundingMaxY,boundingMinY;
+	  float radius,radiusDflt,colR,colG,colB;
 	  bool mouseMvd,mouseDrg,mouseHit;
 	  string mouseMvdString;
 
-	  // static const int NUM = 5;
-	  // ofVec2f circlePos[NUM];
-	  // ofVec2f diffPos[NUM];
+	  static const int NUM = 5;
+	  ofVec2f circlePos[NUM];
+	  ofVec2f diffPos[NUM];
+    float length_x[NUM];
+    float length_y[NUM];
 };
