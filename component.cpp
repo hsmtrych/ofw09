@@ -23,15 +23,17 @@ void component::setup(){
 void component::update(){
   if (mouseMvd && !mouseDrg){
     hexCol = colG;
-    mouseMvdString = "true";
     mouseMvd = false;
+    radius = radiusDflt;
+    mouseMvdString = "true";
   }else if(mouseDrg && !mouseMvd) {
     hexCol = colR;
     radius = 30;
-    mouseMvdString = "false";
     mouseMvd = false;
+    mouseMvdString = "false";
   }else {
     hexCol = colB;
+    radius = radiusDflt;
     mouseMvdString = "false";
   }
 }
@@ -66,6 +68,5 @@ void component::mousePressed(int x, int y, int button){
 }
 
 void component::mouseReleased(int x, int y, int button){
-  radius = radiusDflt;
   mouseDrg = false;
 }

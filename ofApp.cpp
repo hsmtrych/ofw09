@@ -47,38 +47,21 @@ void ofApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
-  // movePos = ofVec2f(x, y);
-  // mouseMvd = true;
-  // mouseDrg = false;
   newComponent.mouseMoved(x, y );
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-  // mouseMvd = false;
-  // mouseDrg = true;
-  //  if (mouseDrg){
-  //   newComponent.circlePos = ofVec2f(x, y);
-  // }
   newComponent.mouseDragged(x, y, button);
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-   // mouseMvd = false;
-   //  diffPos = newComponent.circlePos - movePos;
-   //  float length_x = diffPos.x;
-   //  float length_y = diffPos.y;
-   //  if (-40 < length_x && length_x < 40 && -40 < length_y && length_y < 40 ){
-   //    mouseDrg = true;
-   //  }
   newComponent.mousePressed(x, y, button);
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-  // newComponent.radius = radiusDflt;
-  // mouseDrg = false;
   newComponent.mouseReleased(x, y, button);
 }
 
