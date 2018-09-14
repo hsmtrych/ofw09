@@ -23,13 +23,14 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
 	  //変数
-	  ofVec2f movePos;
+	  // ofVec2f movePos;
 	  // ofVec2f circlePos;
-	  ofVec2f diffPos;
-	  ofColor circleCol;
-	  float radiusDflt,colR,colG,colB;
-	  bool mouseMvd,mouseDrg,mouseHit;
-	  string mouseMvdString;
+	  // ofVec2f diffPos;
+	  // ofColor circleCol;
+	  // float radiusDflt,colR,colG,colB;
+	  float radiusDflt;
+	  // bool mouseMvd,mouseDrg,mouseHit;
+	  // string mouseMvdString;
 
 	  //クラス
 	  component newComponent; // クラスcomponentをインスタンス化(実体化)
