@@ -14,6 +14,7 @@ void component::setup(){
     hexCol = colB;
 
     radius = radiusDflt;
+    radiusExp = 0.8;
 
     mouseMvd = false;
     mouseDrg = false;
@@ -21,20 +22,29 @@ void component::setup(){
 }
 
 void component::update(){
+  //カラー
   if (mouseMvd && !mouseDrg){
     hexCol = colG;
     mouseMvd = false;
-    radius = radiusDflt;
     mouseMvdString = "true";
   }else if(mouseDrg && !mouseMvd) {
     hexCol = colR;
-    radius = 30;
     mouseMvd = false;
     mouseMvdString = "false";
   }else {
     hexCol = colB;
-    radius = radiusDflt;
     mouseMvdString = "false";
+  }
+
+  //サイズ
+  if(mouseDrg && !mouseMvd) {
+    if (radius <= 30 ){
+      radius += radiusExp;
+    }
+  }else {
+    if (radius >= radiusDflt ){
+      radius -= radiusExp;
+    }
   }
 }
 
@@ -53,6 +63,7 @@ void component::mouseMoved(int x, int y ){
 void component::mouseDragged(int x, int y, int button){
   mouseMvd = false;
    if (mouseDrg){
+    movePos = ofVec2f(x, y);
     circlePos = ofVec2f(x, y);
   }
 }

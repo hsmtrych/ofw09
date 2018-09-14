@@ -26,7 +26,7 @@ public:
     ofVec2f circlePos;
     ofVec2f diffPos;
     ofColor circleCol;
-    float radius;
+    float radius,radiusExp;
     float radiusDflt;
     int hexCol,colR,colG,colB;
     bool mouseMvd,mouseDrg;
