@@ -10,10 +10,12 @@ void ofApp::setup(){
 
     // newComponent.radiusDflt = 25;
     // newComponent.setup();
+
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
+  // newComponent.angle = mouseY; //マウスのY座標で回転速度変更
   newComponent.update();
 }
 

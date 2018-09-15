@@ -7,7 +7,6 @@
 
 #include "component.hpp"
 
-
 component::component(){
   //int
     colR = 0xff0000;
@@ -64,15 +63,15 @@ void component::update(){
 
 void component::draw(){
 
-// ofPushMatrix();
-// ofTranslate(ofGetWidth()/2, ofGetHeight()/2, 0);
-// ofRotateZ(angle);
+ofPushMatrix();
+ofTranslate(circlePos.x, circlePos.y);
+ofRotateZ(angle);
 
   ofSetHexColor(hexCol);
-  ofDrawRectangle(circlePos.x,circlePos.y, radius*2, radius*2);
+  ofDrawRectangle(0,0, radius*2, radius*2);
   // ofDrawCircle(circlePos.x, circlePos.y, radius*2);
 
-// ofPopMatrix();
+ofPopMatrix();
 }
 
 void component::mouseMoved(int x, int y ){
