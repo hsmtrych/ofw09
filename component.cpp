@@ -7,6 +7,7 @@
 
 #include "component.hpp"
 
+
 void component::setup(){
     colR = 0xff0000;
     colG = 0x00ff00;

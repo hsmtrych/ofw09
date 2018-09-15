@@ -29,14 +29,18 @@ void ofApp::draw(){
   //変数確認
   ofSetHexColor(0xffffff);
   ofDrawCircle(minCursor.x,minCursor.y, 2);
+  // ログの表示
   ofSetHexColor(0xffffff);
-  ofDrawBitmapString("movePos.x : " + ofToString(newComponent.movePos.x), 10, 10);
-  ofDrawBitmapString("movePos.y : " + ofToString(newComponent.movePos.y), 10, 30);
-  ofDrawBitmapString("mouseMvd : " + ofToString(newComponent.mouseMvdString), 10, 50);
-  ofDrawBitmapString("circlePos.x : " + ofToString(newComponent.circlePos.x), 10, 70);
-  ofDrawBitmapString("circlePos.y : " + ofToString(newComponent.circlePos.y), 10, 90);
-  ofDrawBitmapString("diffPos.x : " + ofToString(newComponent.diffPos.x), 10, 110);
-  ofDrawBitmapString("diffPos.y : " + ofToString(newComponent.diffPos.y), 10, 130);
+  string info;
+  info = "FPS = " + ofToString(ofGetFrameRate(), 2) + "\n";
+  info += "movePos.x : " + ofToString(newComponent.movePos.x) + "\n";
+  info += "movePos.y : " + ofToString(newComponent.movePos.y) + "\n";
+  info += "mouseMvd : " + ofToString(newComponent.mouseMvdString) + "\n";
+  info += "circlePos.x : " + ofToString(newComponent.circlePos.x) + "\n";
+  info += "circlePos.y : " + ofToString(newComponent.circlePos.y) + "\n";
+  info += "diffPos.x : " + ofToString(newComponent.diffPos.x) + "\n";
+  info += "diffPos.y : " + ofToString(newComponent.diffPos.y) + "\n";
+  ofDrawBitmapString(info, 10, 20);
 }
 
 //--------------------------------------------------------------
