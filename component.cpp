@@ -14,7 +14,7 @@ void component::setup(){
     hexCol = colB;
 
     radius = radiusDflt;
-    radiusExp = 0.8;
+    radiusExp = 2;
 
     mouseMvd = false;
     mouseDrg = false;
@@ -22,6 +22,8 @@ void component::setup(){
 }
 
 void component::update(){
+  angle += 10;
+
   //カラー
   if (mouseMvd && !mouseDrg){
     hexCol = colG;
@@ -38,7 +40,7 @@ void component::update(){
 
   //サイズ
   if(mouseDrg && !mouseMvd) {
-    if (radius <= radiusDflt*2 ){
+    if (radius <= radiusDflt*1.2 ){
       radius += radiusExp;
     }
   }else {
@@ -49,6 +51,7 @@ void component::update(){
 }
 
 void component::draw(){
+
   ofSetHexColor(hexCol);
   ofDrawRectangle(circlePos.x,circlePos.y, radius*2, radius*2);
   // ofDrawCircle(circlePos.x, circlePos.y, radius*2);

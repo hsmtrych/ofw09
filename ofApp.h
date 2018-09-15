@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "component.hpp"
+#include "DrawGrid.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -28,10 +29,12 @@ class ofApp : public ofBaseApp{
 	  // ofVec2f diffPos;
 	  // ofColor circleCol;
 	  // float radiusDflt,colR,colG,colB;
-	  float radiusDflt;
+	  // float angle;
 	  // bool mouseMvd,mouseDrg,mouseHit;
 	  // string mouseMvdString;
+	  ofVec2f minCursor;
 
 	  //クラス
 	  component newComponent; // クラスcomponentをインスタンス化(実体化)
+	  DrawGrid newGrid;
 };

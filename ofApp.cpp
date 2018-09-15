@@ -5,6 +5,7 @@ void ofApp::setup(){
     ofSetFrameRate(60);
     ofBackground(0);
     ofSetCircleResolution(64);
+    ofHideCursor(); //マウスカーソル非表示
     ofSetRectMode(OF_RECTMODE_CENTER); //矩形の中心が原点
 
     newComponent.circlePos = ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2);
@@ -21,11 +22,13 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-
   newComponent.draw();
+  newGrid.draw();
 
 
   //変数確認
+  ofSetHexColor(0xffffff);
+  ofDrawCircle(minCursor.x,minCursor.y, 2);
   ofSetHexColor(0xffffff);
   ofDrawBitmapString("movePos.x : " + ofToString(newComponent.movePos.x), 10, 10);
   ofDrawBitmapString("movePos.y : " + ofToString(newComponent.movePos.y), 10, 30);
@@ -49,11 +52,13 @@ void ofApp::keyReleased(int key){
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
   newComponent.mouseMoved(x, y );
+  minCursor = ofVec2f(x,y);
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
   newComponent.mouseDragged(x, y, button);
+  minCursor = ofVec2f(x,y);
 }
 
 //--------------------------------------------------------------
