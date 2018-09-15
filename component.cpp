@@ -32,8 +32,8 @@ component::component(){
 }
 
 void component::update(){
-  angle += 0.1;
-  if (angle >= 360) angle = 0;
+  // angle += 0.1;
+  // if (angle >= 360) angle = 0;
 
   //カラー
   if (mouseMvd && !mouseDrg){
