@@ -33,6 +33,7 @@ class ofApp : public ofBaseApp{
 	  // bool mouseMvd,mouseDrg,mouseHit;
 	  // string mouseMvdString;
 	  ofVec2f minCursor;
+	  bool keyPressedR;
 
 	  //クラス
 	  component newComponent; // クラスcomponentをインスタンス化(実体化)

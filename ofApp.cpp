@@ -8,14 +8,15 @@ void ofApp::setup(){
     ofHideCursor(); //マウスカーソル非表示
     ofSetRectMode(OF_RECTMODE_CENTER); //矩形の中心が原点
 
-    // newComponent.radiusDflt = 25;
-    // newComponent.setup();
+  //bool
+    keyPressedR = false;
 
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-  newComponent.angle = mouseY; //マウスのY座標で回転速度変更
+  if (keyPressedR) newComponent.angle = mouseY;
+
   newComponent.update();
 }
 
@@ -45,12 +46,12 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+    if (int key ='r') keyPressedR = true;
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+  if (int key ='r') keyPressedR = false;
 }
 
 //--------------------------------------------------------------
