@@ -8,11 +8,8 @@ void ofApp::setup(){
     ofHideCursor(); //マウスカーソル非表示
     ofSetRectMode(OF_RECTMODE_CENTER); //矩形の中心が原点
 
-    newComponent.circlePos = ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2);
-    newComponent.radiusDflt = 25;
-    newComponent.setup();
-
-
+    // newComponent.radiusDflt = 25;
+    // newComponent.setup();
 }
 
 //--------------------------------------------------------------
@@ -40,6 +37,7 @@ void ofApp::draw(){
   info += "circlePos.y : " + ofToString(newComponent.circlePos.y) + "\n";
   info += "diffPos.x : " + ofToString(newComponent.diffPos.x) + "\n";
   info += "diffPos.y : " + ofToString(newComponent.diffPos.y) + "\n";
+  info += "angle : " + ofToString(newComponent.angle) + "\n";
   ofDrawBitmapString(info, 10, 20);
 }
 

@@ -8,22 +8,33 @@
 #include "component.hpp"
 
 
-void component::setup(){
+component::component(){
+  //int
     colR = 0xff0000;
     colG = 0x00ff00;
     colB = 0x0000ff;
     hexCol = colB;
 
+  //float
+    radiusDflt = 25;
     radius = radiusDflt;
     radiusExp = 2;
+    angle = 0;
 
+ //bool
     mouseMvd = false;
     mouseDrg = false;
+
+  //string
     mouseMvdString = "false";
+
+    circlePos = ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2);
+
 }
 
 void component::update(){
-  angle += 10;
+  angle += 0.1;
+  if (angle >= 360) angle = 0;
 
   //カラー
   if (mouseMvd && !mouseDrg){
@@ -53,9 +64,15 @@ void component::update(){
 
 void component::draw(){
 
+// ofPushMatrix();
+// ofTranslate(ofGetWidth()/2, ofGetHeight()/2, 0);
+// ofRotateZ(angle);
+
   ofSetHexColor(hexCol);
   ofDrawRectangle(circlePos.x,circlePos.y, radius*2, radius*2);
   // ofDrawCircle(circlePos.x, circlePos.y, radius*2);
+
+// ofPopMatrix();
 }
 
 void component::mouseMoved(int x, int y ){

@@ -14,7 +14,8 @@
 #include "ofMain.h"
 class component {
 public:
-    void setup();
+    // void setup();
+    component();
     void update();
     void draw();
     void mouseMoved(int x, int y );
@@ -26,9 +27,9 @@ public:
     ofVec2f circlePos;
     ofVec2f diffPos;
     ofColor circleCol;
+    int hexCol,colR,colG,colB;
     float radius,radiusExp,angle;
     float radiusDflt;
-    int hexCol,colR,colG,colB;
     bool mouseMvd,mouseDrg;
     string mouseMvdString;
 };
