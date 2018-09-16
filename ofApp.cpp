@@ -10,13 +10,17 @@ void ofApp::setup(){
 
   //bool
     keyPressedR = false;
-
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-  if (keyPressedR) newComponent.angle = mouseY;
-
+  if (keyPressedR) {
+  float angle = 360.0 * mouseY / ofGetHeight();
+    newComponent.angleAdd = mouseY;
+    newComponent.angleDiff = newComponent.angleAdd - angleRelease;
+    newComponent.angle = 360.0 * newComponent.angleDiff / ofGetHeight();
+    // newComponent.angle =
+  }
   newComponent.update();
 }
 
@@ -41,23 +45,40 @@ void ofApp::draw(){
   info += "diffPos.x : " + ofToString(newComponent.diffPos.x) + "\n";
   info += "diffPos.y : " + ofToString(newComponent.diffPos.y) + "\n";
   info += "angle : " + ofToString(newComponent.angle) + "\n";
+  info += "angleAdd : " + ofToString(newComponent.angleAdd) + "\n";
+  info += "angleDiff : " + ofToString(newComponent.angleDiff) + "\n";
+  info += "angleSet : " + ofToString(angleSet) + "\n";
+  info += "angleRelease : " + ofToString(angleRelease) + "\n";
   ofDrawBitmapString(info, 10, 20);
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    if (int key ='r') keyPressedR = true;
+    if (key =='r') {
+      keyPressedR = true;
+      angleSet = mouseY;
+      // angleSet = 360.0 * mouseY / ofGetHeight();
+      // newComponent.angleAdd = angleSet;
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-  if (int key ='r') keyPressedR = false;
+  if (key =='r') {
+    keyPressedR = false;
+    angleRelease = mouseY;
+    // angleRelease = 360.0 * mouseY / ofGetHeight();
+    // newComponent.angleAdd = newComponent.angle;
+  }
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
   newComponent.mouseMoved(x, y );
   minCursor = ofVec2f(x,y);
+  if (keyPressedR) {
+    // angleSet = y;
+  }
 }
 
 //--------------------------------------------------------------

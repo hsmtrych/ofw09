@@ -19,6 +19,8 @@ component::component(){
     radius = radiusDflt;
     radiusExp = 2;
     angle = 0;
+    angleAdd = 0;
+    angleDiff = 0;
 
  //bool
     mouseMvd = false;

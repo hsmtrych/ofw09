@@ -28,8 +28,7 @@ public:
     ofVec2f diffPos;
     ofColor circleCol;
     int hexCol,colR,colG,colB;
-    float radius,radiusExp,angle;
-    float radiusDflt;
+    float radius,radiusDflt,radiusExp,angle,angleAdd,angleDiff;
     bool mouseMvd,mouseDrg;
     string mouseMvdString;
 };
