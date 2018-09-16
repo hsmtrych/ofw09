@@ -25,6 +25,7 @@ component::component(){
  //bool
     mouseMvd = false;
     mouseDrg = false;
+    keyPressedR = false;
 
   //string
     mouseMvdString = "false";
@@ -34,6 +35,7 @@ component::component(){
 }
 
 void component::update(){
+
   // angle += 0.1;
   // if (angle >= 360) angle = 0;
 
@@ -67,6 +69,18 @@ void component::draw(){
 
 ofPushMatrix();
 ofTranslate(circlePos.x, circlePos.y);
+
+  if (keyPressedR) {
+    // ofTranslate(0, 0);
+    // angle = angleSet;
+    angleDiff = angleSet - angleRelease;
+    if (angleDiff < 0) angleDiff*-1;
+    angle = angleSet - angleDiff;
+
+  } else {
+    angle = angleRelease;
+  }
+
 ofRotateZ(angle);
 
   ofSetHexColor(hexCol);
@@ -74,6 +88,18 @@ ofRotateZ(angle);
   // ofDrawCircle(circlePos.x, circlePos.y, radius*2);
 
 ofPopMatrix();
+}
+
+void component::keyPressed(int key){
+    if (key =='r') {
+      keyPressedR = true;
+    }
+}
+void component::keyReleased(int key){
+  if (key =='r') {
+    keyPressedR = false;
+    angleRelease = angleSet;
+  }
 }
 
 void component::mouseMoved(int x, int y ){
@@ -87,6 +113,10 @@ void component::mouseMoved(int x, int y ){
     if (-radiusDflt < length_x && length_x < radiusDflt && -radiusDflt < length_y && length_y < radiusDflt ){
       mouseMvd = false;
     }
+
+  if (keyPressedR) {
+    angleSet = y;
+  }
 }
 
 void component::mouseDragged(int x, int y, int button){
