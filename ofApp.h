@@ -34,7 +34,7 @@ class ofApp : public ofBaseApp{
 	  // string mouseMvdString;
 	  ofVec2f minCursor;
 	  bool keyPressedR;
-	  float angleSet, angleRelease;
+	  float angleSet,angleRelease,angleSave;
 
 	  //クラス
 	  component newComponent; // クラスcomponentをインスタンス化(実体化)

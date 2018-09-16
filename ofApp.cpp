@@ -14,12 +14,20 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-  if (keyPressedR) {
   float angle = 360.0 * mouseY / ofGetHeight();
-    newComponent.angleAdd = mouseY;
-    newComponent.angleDiff = newComponent.angleAdd - angleRelease;
-    newComponent.angle = 360.0 * newComponent.angleDiff / ofGetHeight();
-    // newComponent.angle =
+  if (keyPressedR) {
+      // newComponent.angleDiff = angleRelease - (mouseY - angleRelease);
+      // newComponent.angle = 360.0 * newComponent.angleDiff / ofGetHeight();
+      // newComponent.angleAdd = angleRelease;
+      newComponent.angle = 360.0 * angleRelease / ofGetHeight();
+
+    if (newComponent.mouseMvd){
+    // newComponent.angleDiff = mouseY - angleRelease;
+    // newComponent.angle = 360.0 * newComponent.angleDiff / ofGetHeight();
+    }
+
+  } else {
+    newComponent.angle = 360.0 * angleRelease / ofGetHeight();
   }
   newComponent.update();
 }
@@ -46,6 +54,7 @@ void ofApp::draw(){
   info += "diffPos.y : " + ofToString(newComponent.diffPos.y) + "\n";
   info += "angle : " + ofToString(newComponent.angle) + "\n";
   info += "angleAdd : " + ofToString(newComponent.angleAdd) + "\n";
+  info += "mouseY : " + ofToString(mouseY) + "\n";
   info += "angleDiff : " + ofToString(newComponent.angleDiff) + "\n";
   info += "angleSet : " + ofToString(angleSet) + "\n";
   info += "angleRelease : " + ofToString(angleRelease) + "\n";
@@ -57,6 +66,7 @@ void ofApp::keyPressed(int key){
     if (key =='r') {
       keyPressedR = true;
       angleSet = mouseY;
+
       // angleSet = 360.0 * mouseY / ofGetHeight();
       // newComponent.angleAdd = angleSet;
     }
@@ -67,6 +77,8 @@ void ofApp::keyReleased(int key){
   if (key =='r') {
     keyPressedR = false;
     angleRelease = mouseY;
+    // angleSave = angleRelease - angleSet;
+
     // angleRelease = 360.0 * mouseY / ofGetHeight();
     // newComponent.angleAdd = newComponent.angle;
   }
