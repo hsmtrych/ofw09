@@ -28,10 +28,11 @@ public:
     ofVec2f movePos;
     ofVec2f circlePos;
     ofVec2f diffPos;
+    // ofVec2f anglePos;
     ofColor circleCol;
     int hexCol,colR,colG,colB;
-    float radius,radiusDflt,radiusExp,angle,angleAdd,angleDiff,angleSet,angleRelease;
-    bool mouseMvd,mouseDrg,keyPressedR;
+    float radius,radiusDflt,radiusExp,angle,angleGet,angleDiff,angleSet,angleRelease;
+    bool mouseMvd,mouseDrg,keyPressedR,mouseAngle;
     string mouseMvdString;
 };
 

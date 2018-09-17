@@ -19,13 +19,14 @@ component::component(){
     radius = radiusDflt;
     radiusExp = 2;
     angle = 0;
-    angleAdd = 0;
+    angleGet = 0;
     angleDiff = 0;
 
  //bool
     mouseMvd = false;
     mouseDrg = false;
     keyPressedR = false;
+    mouseAngle = false;
 
   //string
     mouseMvdString = "false";
@@ -35,6 +36,13 @@ component::component(){
 }
 
 void component::update(){
+
+  //角度
+  if (keyPressedR && mouseAngle) {
+    angleDiff = angleGet - angleSet;
+    if (angleDiff < 0) angleDiff*-1;
+    angle = angleRelease + angleDiff;
+  }
 
   // angle += 0.1;
   // if (angle >= 360) angle = 0;
@@ -69,18 +77,6 @@ void component::draw(){
 
 ofPushMatrix();
 ofTranslate(circlePos.x, circlePos.y);
-
-  if (keyPressedR) {
-    // ofTranslate(0, 0);
-    // angle = angleSet;
-    angleDiff = angleSet - angleRelease;
-    if (angleDiff < 0) angleDiff*-1;
-    angle = angleSet - angleDiff;
-
-  } else {
-    angle = angleRelease;
-  }
-
 ofRotateZ(angle);
 
   ofSetHexColor(hexCol);
@@ -98,7 +94,8 @@ void component::keyPressed(int key){
 void component::keyReleased(int key){
   if (key =='r') {
     keyPressedR = false;
-    angleRelease = angleSet;
+    mouseAngle = false;
+    angleRelease = angle;
   }
 }
 
@@ -113,10 +110,6 @@ void component::mouseMoved(int x, int y ){
     if (-radiusDflt < length_x && length_x < radiusDflt && -radiusDflt < length_y && length_y < radiusDflt ){
       mouseMvd = false;
     }
-
-  if (keyPressedR) {
-    angleSet = y;
-  }
 }
 
 void component::mouseDragged(int x, int y, int button){
@@ -124,6 +117,10 @@ void component::mouseDragged(int x, int y, int button){
    if (mouseDrg){
     movePos = ofVec2f(x, y);
     circlePos = ofVec2f(x, y);
+  }
+  if (keyPressedR) {
+    mouseAngle = true;
+    angleGet = y;
   }
 }
 
@@ -135,8 +132,13 @@ void component::mousePressed(int x, int y, int button){
     if (-radiusDflt < length_x && length_x < radiusDflt && -radiusDflt < length_y && length_y < radiusDflt ){
       mouseDrg = true;
     }
+
+  if (keyPressedR) {
+    angleSet = y;
+  }
 }
 
 void component::mouseReleased(int x, int y, int button){
   mouseDrg = false;
+  mouseAngle = false;
 }

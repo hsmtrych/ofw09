@@ -32,9 +32,9 @@ void ofApp::draw(){
 
   info += "mouseY : " + ofToString(mouseY) + "\n";
   info += "angleSet : " + ofToString(newComponent.angleSet) + "\n";
+  info += "angleGet : " + ofToString(newComponent.angleGet) + "\n";
   info += "angleDiff : " + ofToString(newComponent.angleDiff) + "\n";
   info += "angle : " + ofToString(newComponent.angle) + "\n";
-  // info += "angleAdd : " + ofToString(newComponent.angleAdd) + "\n";
   info += "angleRelease : " + ofToString(newComponent.angleRelease) + "\n";
   // info += "angleSave : " + ofToString(angleSave) + "\n";
   ofDrawBitmapString(info, 10, 20);
