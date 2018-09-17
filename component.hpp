@@ -25,13 +25,12 @@ public:
     void mousePressed(int x, int y, int button);
     void mouseReleased(int x, int y, int button);
 
-    ofVec2f movePos;
-    ofVec2f circlePos;
-    ofVec2f diffPos;
-    // ofVec2f anglePos;
+    ofVec2f movePos, circlePos, diffPos;
+    ofVec2f angleGet,angleSet;
+    float radius,radiusDflt,radiusExp;
+    float angle,angleDiff,angleRelease;
     ofColor circleCol;
     int hexCol,colR,colG,colB;
-    float radius,radiusDflt,radiusExp,angle,angleGet,angleDiff,angleSet,angleRelease;
     bool mouseMvd,mouseDrg,keyPressedR,mouseAngle;
     string mouseMvdString;
 };

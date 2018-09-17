@@ -19,7 +19,6 @@ component::component(){
     radius = radiusDflt;
     radiusExp = 2;
     angle = 0;
-    angleGet = 0;
     angleDiff = 0;
 
  //bool
@@ -39,9 +38,11 @@ void component::update(){
 
   //角度
   if (keyPressedR && mouseAngle) {
-    angleDiff = angleGet - angleSet;
-    if (angleDiff < 0) angleDiff*-1;
+    angleDiff = angleGet.y - angleSet.y;
     angle = angleRelease + angleDiff;
+    if (angleSet.x < ofGetWidth() / 2) {
+      angle = angleRelease - angleDiff;
+    }
   }
 
   // angle += 0.1;
@@ -77,7 +78,7 @@ void component::draw(){
 
 ofPushMatrix();
 ofTranslate(circlePos.x, circlePos.y);
-ofRotateZ(angle);
+ofRotateZ(360.0 * angle / ofGetHeight() );
 
   ofSetHexColor(hexCol);
   ofDrawRectangle(0,0, radius*2, radius*2);
@@ -120,7 +121,7 @@ void component::mouseDragged(int x, int y, int button){
   }
   if (keyPressedR) {
     mouseAngle = true;
-    angleGet = y;
+    angleGet = ofVec2f(x, y);
   }
 }
 
@@ -134,7 +135,7 @@ void component::mousePressed(int x, int y, int button){
     }
 
   if (keyPressedR) {
-    angleSet = y;
+    angleSet = ofVec2f(x, y);
   }
 }
 
