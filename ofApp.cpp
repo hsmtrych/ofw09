@@ -7,6 +7,8 @@ void ofApp::setup(){
     ofSetCircleResolution(64);
     ofHideCursor(); //マウスカーソル非表示
     ofSetRectMode(OF_RECTMODE_CENTER); //矩形の中心が原点
+    // ofSetFullscreen(true);
+    ofSetWindowPosition(0, 0); //ウインドウ位置
 
 }
 
@@ -34,12 +36,15 @@ void ofApp::draw(){
   // info += "angle : " + ofToString(newComponent.angle) + "\n";
   // info += "angleSave : " + ofToString(angleSave) + "\n";
   ofDrawBitmapString(info, 10, 20);
+
+  // float t = ofGetElapsedTimef();
+  // ofLogNotice() << (ofGetElapsedTimef() - t);
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
   newComponent.keyPressed(key);
-
+  if (key =='f') {ofToggleFullscreen();}
 }
 
 //--------------------------------------------------------------

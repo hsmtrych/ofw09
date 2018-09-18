@@ -40,7 +40,7 @@ void component::update(){
   if (keyPressedR && mouseAngle) {
     angleDiff = angleGet.y - angleSet.y;
     angle = angleRelease + angleDiff;
-    if (angleSet.x < ofGetWidth() / 2) {
+    if (angleSet.x < circlePos.x) {
       angle = angleRelease - angleDiff;
     }
   }
@@ -79,6 +79,7 @@ void component::draw(){
 ofPushMatrix();
 ofTranslate(circlePos.x, circlePos.y);
 ofRotateZ(360.0 * angle / ofGetHeight() );
+// ofScale(2.0 + sin(ofGetElapsedTimef()), 2.0 + sin(ofGetElapsedTimef()), 1.0);
 
   ofSetHexColor(hexCol);
   ofDrawRectangle(0,0, radius*2, radius*2);
