@@ -24,8 +24,9 @@ component::component(){
  //bool
     mouseMvd = false;
     mouseDrg = false;
-    keyPressedR = false;
     mouseAngle = false;
+    keyPressedR = false;
+    keyPressedS = false;
 
   //string
     mouseMvdString = "false";
@@ -89,9 +90,23 @@ ofPopMatrix();
 }
 
 void component::keyPressed(int key){
-    if (key =='r') {
-      keyPressedR = true;
+    switch (key) {
+      case 'r' :
+        keyPressedR = true;
+        break;
+      case 's' :
+        keyPressedS = true;
+        break;
+      case 'f' :
+        // ofSetFullscreen(true);
+        ofSetWindowShape(1440, 900);
+        break;
     }
+  if (key =='f') {
+    keyPressedR = false;
+    mouseAngle = false;
+    angleRelease = angle;
+  }
 }
 void component::keyReleased(int key){
   if (key =='r') {

@@ -31,7 +31,8 @@ public:
     float angle,angleDiff,angleRelease;
     ofColor circleCol;
     int hexCol,colR,colG,colB;
-    bool mouseMvd,mouseDrg,keyPressedR,mouseAngle;
+    bool mouseMvd,mouseDrg,mouseAngle;
+    bool keyPressedR,keyPressedS;
     string mouseMvdString;
 };
 
