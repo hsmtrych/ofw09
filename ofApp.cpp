@@ -33,7 +33,10 @@ void ofApp::draw(){
   info += "mouseX : " + ofToString(mouseX) + "\n";
   info += "mouseY : " + ofToString(mouseY) + "\n";
 
-  // info += "angle : " + ofToString(newComponent.angle) + "\n";
+  info += "radius : " + ofToString(newComponent.radius) + "\n";
+  info += "scaleRelease : " + ofToString(newComponent.scaleRelease) + "\n";
+  info += "scaleDiff : " + ofToString(newComponent.scaleDiff) + "\n";
+  info += "scale : " + ofToString(newComponent.scale) + "\n";
   // info += "angleSave : " + ofToString(angleSave) + "\n";
   ofDrawBitmapString(info, 10, 20);
 

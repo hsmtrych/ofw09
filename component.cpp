@@ -15,16 +15,17 @@ component::component(){
     hexCol = colB;
 
   //float
-    radiusDflt = 25;
-    radius = radiusDflt;
-    radiusExp = 2;
+    radius = 50;
     angle = 0;
     angleDiff = 0;
+    scale = 10;
+    scaleDiff = 1;
 
  //bool
     mouseMvd = false;
     mouseDrg = false;
     mouseAngle = false;
+    mouseScale = false;
     keyPressedR = false;
     keyPressedS = false;
 
@@ -46,8 +47,14 @@ void component::update(){
     }
   }
 
-  // angle += 0.1;
-  // if (angle >= 360) angle = 0;
+  //サイズ
+  if (keyPressedS && mouseScale) {
+    scaleDiff = scaleGet.x - scaleSet.x;
+    scale = scaleRelease + scaleDiff;
+    if (scaleSet.x < circlePos.x) {
+      scale = scaleRelease - scaleDiff;
+    }
+  }
 
   //カラー
   if (mouseMvd && !mouseDrg){
@@ -63,16 +70,6 @@ void component::update(){
     mouseMvdString = "false";
   }
 
-  //サイズ
-  if(mouseDrg && !mouseMvd) {
-    if (radius <= radiusDflt*1.2 ){
-      radius += radiusExp;
-    }
-  }else {
-    if (radius >= radiusDflt ){
-      radius -= radiusExp;
-    }
-  }
 }
 
 void component::draw(){
@@ -80,10 +77,10 @@ void component::draw(){
 ofPushMatrix();
 ofTranslate(circlePos.x, circlePos.y);
 ofRotateZ(360.0 * angle / ofGetHeight() );
-// ofScale(2.0 + sin(ofGetElapsedTimef()), 2.0 + sin(ofGetElapsedTimef()), 1.0);
+ofScale(scale*0.1, scale*0.1, 1.0);
 
   ofSetHexColor(hexCol);
-  ofDrawRectangle(0,0, radius*2, radius*2);
+  ofDrawRectangle(0,0, radius, radius);
   // ofDrawCircle(circlePos.x, circlePos.y, radius*2);
 
 ofPopMatrix();
@@ -102,18 +99,23 @@ void component::keyPressed(int key){
         ofSetWindowShape(1440, 900);
         break;
     }
-  if (key =='f') {
-    keyPressedR = false;
-    mouseAngle = false;
-    angleRelease = angle;
-  }
 }
 void component::keyReleased(int key){
-  if (key =='r') {
-    keyPressedR = false;
-    mouseAngle = false;
-    angleRelease = angle;
-  }
+    switch (key) {
+      case 'r' :
+        keyPressedR = false;
+        mouseAngle = false;
+        angleRelease = angle;
+        break;
+      case 's' :
+        keyPressedS = false;
+        mouseScale = false;
+        scaleRelease = scale;
+        break;
+      case 'f' :
+        ofSetWindowShape(1024, 768);
+        break;
+    }
 }
 
 void component::mouseMoved(int x, int y ){
@@ -124,7 +126,8 @@ void component::mouseMoved(int x, int y ){
     diffPos = circlePos - movePos;
     float length_x = diffPos.x;
     float length_y = diffPos.y;
-    if (-radiusDflt < length_x && length_x < radiusDflt && -radiusDflt < length_y && length_y < radiusDflt ){
+    float size = radius/2 * (scale*0.1);
+    if (-size < length_x && length_x < size && -size < length_y && length_y < size ){
       mouseMvd = false;
     }
 }
@@ -134,10 +137,12 @@ void component::mouseDragged(int x, int y, int button){
    if (mouseDrg){
     movePos = ofVec2f(x, y);
     circlePos = ofVec2f(x, y);
-  }
-  if (keyPressedR) {
+  } else if (keyPressedR) {
     mouseAngle = true;
     angleGet = ofVec2f(x, y);
+  } else if (keyPressedS) {
+    mouseScale = true;
+    scaleGet = ofVec2f(x, y);
   }
 }
 
@@ -146,16 +151,20 @@ void component::mousePressed(int x, int y, int button){
     diffPos = circlePos - movePos;
     float length_x = diffPos.x;
     float length_y = diffPos.y;
-    if (-radiusDflt < length_x && length_x < radiusDflt && -radiusDflt < length_y && length_y < radiusDflt ){
+    float size = radius/2 * (scale*0.1);
+    if (-size < length_x && length_x < size && -size < length_y && length_y < size ){
       mouseDrg = true;
     }
 
   if (keyPressedR) {
     angleSet = ofVec2f(x, y);
+  } else if (keyPressedS) {
+    scaleSet = ofVec2f(x, y);
   }
 }
 
 void component::mouseReleased(int x, int y, int button){
   mouseDrg = false;
   mouseAngle = false;
+  mouseScale = false;
 }
