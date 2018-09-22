@@ -27,8 +27,6 @@ public:
 
     ofVec2f mouseMovePos, mouseDragPos, mouseDiffPos, mousePressPos;
     float radius;
-    // ofVec2f angleGet,angleSet;
-    // ofVec2f scaleGet,scaleSet;
     ofVec2f drawingPos, drawedPos, drawDiffPos;
     ofVec2f transformDragPos, transformPressPos;
     float angle,angleDiff,angleRelease;
@@ -40,7 +38,7 @@ public:
     bool mouseMvd,mouseDrg,mouseAngle,mouseScale;
     bool keyPressedR,keyPressedS;
     string mouseMvdString;
-    float sized;
+
     float length_x, length_y;
 
 };

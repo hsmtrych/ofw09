@@ -34,7 +34,6 @@ void ofApp::draw(){
   info += "mouseY : " + ofToString(mouseY) + "\n";
   info += "length_x : " + ofToString(newComponent.length_x) + "\n";
   info += "length_y : " + ofToString(newComponent.length_y) + "\n";
-  info += "sized : " + ofToString(newComponent.sized) + "\n\n";
 
   info += "drawedPos.x : " + ofToString(newComponent.drawedPos.x) + "\n";
   info += "mousePressPos.x : " + ofToString(newComponent.mousePressPos.x) + "\n";

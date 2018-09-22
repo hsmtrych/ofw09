@@ -43,10 +43,6 @@ component::component(){
 }
 
 void component::update(){
-  //ドラッグ
-  // size = drawingPos * (scale*0.1);
-
-
 
   //角度
   if (keyPressedR && mouseAngle) {
@@ -134,17 +130,9 @@ void component::mouseMoved(int x, int y ){
   mouseMovePos = ofVec2f(x, y);
 
     mouseDiffPos = mouseDragPos - mouseMovePos;
-    // testDiffLength = abs(mouseDiffPos) - abs(drawDiffPos);
-    // float length_x = testDiffLength.x;
-    // float length_y = testDiffLength.y;
-
     length_x = fabs(mouseDiffPos.x) - fabs(drawDiffPos.x);
     length_y = fabs(mouseDiffPos.y) - fabs(drawDiffPos.y);
-
     float size = radius/2 * (scale*0.1);
-    //
-    sized = radius/2 * (scale*0.1);
-    //
     if (-size < length_x && length_x < size && -size < length_y && length_y < size ){
       mouseMvd = false;
     }
@@ -168,15 +156,9 @@ void component::mouseDragged(int x, int y, int button){
 void component::mousePressed(int x, int y, int button){
     mouseMvd = false;
 
-    // mouseDiffPos = mouseDragPos - mouseMovePos;
-    // float length_x = mouseDiffPos.x;
-    // float length_y = mouseDiffPos.y;
-
     mouseDiffPos = mouseDragPos - mouseMovePos;
-
     length_x = fabs(mouseDiffPos.x) - fabs(drawDiffPos.x);
     length_y = fabs(mouseDiffPos.y) - fabs(drawDiffPos.y);
-
     float size = radius/2 * (scale*0.1);
     if (-size < length_x && length_x < size && -size < length_y && length_y < size ){
       mouseDrg = true;
