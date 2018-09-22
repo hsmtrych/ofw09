@@ -8,7 +8,7 @@ void ofApp::setup(){
     ofHideCursor(); //マウスカーソル非表示
     ofSetRectMode(OF_RECTMODE_CENTER); //矩形の中心が原点
     // ofSetFullscreen(true);
-    ofSetWindowPosition(0, 0); //ウインドウ位置
+    ofSetWindowPosition(416, 0); //ウインドウ位置
 
 }
 
@@ -32,11 +32,21 @@ void ofApp::draw(){
   info = "FPS = " + ofToString(ofGetFrameRate(), 2) + "\n";
   info += "mouseX : " + ofToString(mouseX) + "\n";
   info += "mouseY : " + ofToString(mouseY) + "\n";
+  info += "length_x : " + ofToString(newComponent.length_x) + "\n";
+  info += "length_y : " + ofToString(newComponent.length_y) + "\n";
+  info += "sized : " + ofToString(newComponent.sized) + "\n\n";
 
-  info += "radius : " + ofToString(newComponent.radius) + "\n";
-  info += "scaleRelease : " + ofToString(newComponent.scaleRelease) + "\n";
-  info += "scaleDiff : " + ofToString(newComponent.scaleDiff) + "\n";
-  info += "scale : " + ofToString(newComponent.scale) + "\n";
+  info += "drawedPos.x : " + ofToString(newComponent.drawedPos.x) + "\n";
+  info += "mousePressPos.x : " + ofToString(newComponent.mousePressPos.x) + "\n";
+  info += "   drawDiffPos.x : " + ofToString(newComponent.drawDiffPos.x) + "\n";
+  info += "mouseDragPos.x : " + ofToString(newComponent.mouseDragPos.x) + "\n";
+  info += "   drawingPos.x : " + ofToString(newComponent.drawingPos.x) + "\n\n";
+
+  info += "drawedPos.y : " + ofToString(newComponent.drawedPos.y) + "\n";
+  info += "mousePressPos.y : " + ofToString(newComponent.mousePressPos.y) + "\n";
+  info += "   drawDiffPos.y : " + ofToString(newComponent.drawDiffPos.y) + "\n";
+  info += "mouseDragPos.y : " + ofToString(newComponent.mouseDragPos.y) + "\n";
+  info += "   drawingPos.y : " + ofToString(newComponent.drawingPos.y) + "\n\n";
   // info += "angleSave : " + ofToString(angleSave) + "\n";
   ofDrawBitmapString(info, 10, 20);
 

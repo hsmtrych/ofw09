@@ -25,11 +25,13 @@ public:
     void mousePressed(int x, int y, int button);
     void mouseReleased(int x, int y, int button);
 
-    ofVec2f movePos, circlePos, diffPos;
+    ofVec2f mouseMovePos, mouseDragPos, mouseDiffPos, mousePressPos;
     float radius;
-    ofVec2f angleGet,angleSet;
+    // ofVec2f angleGet,angleSet;
+    // ofVec2f scaleGet,scaleSet;
+    ofVec2f drawingPos, drawedPos, drawDiffPos;
+    ofVec2f transformDragPos, transformPressPos;
     float angle,angleDiff,angleRelease;
-    ofVec2f scaleGet,scaleSet;
     float scale,scaleDiff,scaleRelease;
 
     ofColor circleCol;
@@ -38,6 +40,9 @@ public:
     bool mouseMvd,mouseDrg,mouseAngle,mouseScale;
     bool keyPressedR,keyPressedS;
     string mouseMvdString;
+    float sized;
+    float length_x, length_y;
+
 };
 
 #endif /* component_hpp */

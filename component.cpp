@@ -8,6 +8,13 @@
 #include "component.hpp"
 
 component::component(){
+
+    ofVec2f getCenter = ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2);
+    mouseDragPos = getCenter;
+    drawingPos = getCenter;
+    drawedPos = getCenter;
+    mousePressPos = getCenter;
+
   //int
     colR = 0xff0000;
     colG = 0x00ff00;
@@ -20,6 +27,7 @@ component::component(){
     angleDiff = 0;
     scale = 10;
     scaleDiff = 1;
+    scaleRelease = scale;
 
  //bool
     mouseMvd = false;
@@ -32,26 +40,28 @@ component::component(){
   //string
     mouseMvdString = "false";
 
-    circlePos = ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2);
-
 }
 
 void component::update(){
+  //ドラッグ
+  // size = drawingPos * (scale*0.1);
+
+
 
   //角度
   if (keyPressedR && mouseAngle) {
-    angleDiff = angleGet.y - angleSet.y;
+    angleDiff = transformDragPos.y - transformPressPos.y;
     angle = angleRelease + angleDiff;
-    if (angleSet.x < circlePos.x) {
+    if (transformPressPos.x < mouseDragPos.x) {
       angle = angleRelease - angleDiff;
     }
   }
 
   //サイズ
   if (keyPressedS && mouseScale) {
-    scaleDiff = scaleGet.x - scaleSet.x;
+    scaleDiff = transformDragPos.x - transformPressPos.x;
     scale = scaleRelease + scaleDiff;
-    if (scaleSet.x < circlePos.x) {
+    if (transformPressPos.x < mouseDragPos.x) {
       scale = scaleRelease - scaleDiff;
     }
   }
@@ -75,13 +85,13 @@ void component::update(){
 void component::draw(){
 
 ofPushMatrix();
-ofTranslate(circlePos.x, circlePos.y);
+ofTranslate(drawingPos.x, drawingPos.y);
 ofRotateZ(360.0 * angle / ofGetHeight() );
 ofScale(scale*0.1, scale*0.1, 1.0);
 
   ofSetHexColor(hexCol);
-  ofDrawRectangle(0,0, radius, radius);
-  // ofDrawCircle(circlePos.x, circlePos.y, radius*2);
+  ofDrawRectangle(0, 0, radius, radius);
+  // ofDrawCircle(mouseDragPos.x, mouseDragPos.y, radius*2);
 
 ofPopMatrix();
 }
@@ -121,12 +131,20 @@ void component::keyReleased(int key){
 void component::mouseMoved(int x, int y ){
   mouseMvd = true;
   mouseDrg = false;
-  movePos = ofVec2f(x, y);
+  mouseMovePos = ofVec2f(x, y);
 
-    diffPos = circlePos - movePos;
-    float length_x = diffPos.x;
-    float length_y = diffPos.y;
+    mouseDiffPos = mouseDragPos - mouseMovePos;
+    // testDiffLength = abs(mouseDiffPos) - abs(drawDiffPos);
+    // float length_x = testDiffLength.x;
+    // float length_y = testDiffLength.y;
+
+    length_x = fabs(mouseDiffPos.x) - fabs(drawDiffPos.x);
+    length_y = fabs(mouseDiffPos.y) - fabs(drawDiffPos.y);
+
     float size = radius/2 * (scale*0.1);
+    //
+    sized = radius/2 * (scale*0.1);
+    //
     if (-size < length_x && length_x < size && -size < length_y && length_y < size ){
       mouseMvd = false;
     }
@@ -135,36 +153,49 @@ void component::mouseMoved(int x, int y ){
 void component::mouseDragged(int x, int y, int button){
   mouseMvd = false;
    if (mouseDrg){
-    movePos = ofVec2f(x, y);
-    circlePos = ofVec2f(x, y);
+    mouseMovePos = ofVec2f(x, y);
+    mouseDragPos = ofVec2f(x, y);
+    drawingPos = mouseDragPos + drawDiffPos;
   } else if (keyPressedR) {
     mouseAngle = true;
-    angleGet = ofVec2f(x, y);
+    transformDragPos = ofVec2f(x, y);
   } else if (keyPressedS) {
     mouseScale = true;
-    scaleGet = ofVec2f(x, y);
+    transformDragPos = ofVec2f(x, y);
   }
 }
 
 void component::mousePressed(int x, int y, int button){
     mouseMvd = false;
-    diffPos = circlePos - movePos;
-    float length_x = diffPos.x;
-    float length_y = diffPos.y;
+
+    // mouseDiffPos = mouseDragPos - mouseMovePos;
+    // float length_x = mouseDiffPos.x;
+    // float length_y = mouseDiffPos.y;
+
+    mouseDiffPos = mouseDragPos - mouseMovePos;
+
+    length_x = fabs(mouseDiffPos.x) - fabs(drawDiffPos.x);
+    length_y = fabs(mouseDiffPos.y) - fabs(drawDiffPos.y);
+
     float size = radius/2 * (scale*0.1);
     if (-size < length_x && length_x < size && -size < length_y && length_y < size ){
       mouseDrg = true;
     }
 
   if (keyPressedR) {
-    angleSet = ofVec2f(x, y);
+    transformPressPos = ofVec2f(x, y);
   } else if (keyPressedS) {
-    scaleSet = ofVec2f(x, y);
+    transformPressPos = ofVec2f(x, y);
   }
+
+  mousePressPos = ofVec2f(x,y);
+  drawDiffPos = drawedPos - mousePressPos;
 }
 
 void component::mouseReleased(int x, int y, int button){
   mouseDrg = false;
   mouseAngle = false;
   mouseScale = false;
+
+  drawedPos = drawingPos;
 }
